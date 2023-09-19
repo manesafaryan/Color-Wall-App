@@ -1,0 +1,7 @@
+<div class="wall">
+  <div *ngFor="let row of wall; let rowIndex = index" class="wall-row">
+    <div *ngFor="let brick of row; let colIndex = index" class="brick-column">
+      <app-brick [color]="brick.color" (click)="handleBrickClick(rowIndex, colIndex)"></app-brick>
+    </div>
+  </div>
+</div>
