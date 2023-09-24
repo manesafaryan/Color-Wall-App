@@ -1,11 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
-
-interface Cell {
-  rowIndex: number;
-  colIndex: number;
-}
 
 export const swapAnimation = trigger('swap', [
   transition('* <=> *', [
@@ -28,9 +23,4 @@ export const swapAnimation = trigger('swap', [
 })
 export class BrickComponent {
   @Input() color!: string;
-  @Output() brickClick: EventEmitter<Cell> = new EventEmitter<Cell>();
-
-  handleClick(rowIndex: number, colIndex: number) {
-    this.brickClick.emit({ rowIndex, colIndex });
-  }
 }
