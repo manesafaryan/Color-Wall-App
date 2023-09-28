@@ -17,10 +17,17 @@ export class WallBuilderComponent {
   height = 0;
   colorCount = 0;
   isDiagonalModeOn = false;
+  errorMessage = '';
 
   @Output() onSubmit: EventEmitter<WallFormData> = new EventEmitter<WallFormData>();
 
   handleSubmit() {
+    if (!this.width || !this.height) {
+      this.errorMessage = 'Please specify width and height';
+    } else {
+      this.errorMessage = '';
+    }
+
     const formData = {
       width: this.width,
       height: this.height,

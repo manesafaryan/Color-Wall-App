@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { swapColorsColRow, swapColorsDiagonaly, generateColors } from 'src/app/util/wall/wall.utils';
+import { generateColors } from 'src/app/util/wall/wall.utils';
 
 import { WallFormData } from '../wallbuilder/wallbuilder.component';
 
-export type Brick = { color: string; isSwapping?: boolean };
+export type Brick = { color: string };
 
 @Component({
   selector: 'app-wall',
@@ -33,15 +33,29 @@ export class WallComponent {
 
   handleBrickClick(rowIndex: number, colIndex: number) {
     const wall = [...this.wall];
-    const wallHeight = this.data.height;
-    const wallWidth = this.data.width;
-    for (let i = 0; i <= Math.max(wallWidth, wallHeight); i++) {
-      if (this.data.isDiagonalModeOn) {
-        swapColorsDiagonaly({ wall, wallHeight, wallWidth }, { rowIndex, colIndex, i });
-      } else {
-        swapColorsColRow({ wall, wallHeight, wallWidth }, { rowIndex, colIndex, i });
+    if (!this.data.isDiagonalModeOn) {
+      for (let i = 0; i < this.data.width; i++) {
+        this.invertColors(wall, rowIndex, i);
       }
+
+      for (let i = 0; i < this.data.height; i++) {
+        this.invertColors(wall, i, colIndex);
+      }
+      this.invertColors(wall, rowIndex, colIndex);
+    } else {
+      for (let i = 0; i < this.data.width; i++) {}
     }
     this.wall = wall;
+  }
+
+  invertColors(wall: Brick[][], rowIndex: number, colIndex: number) {
+    const invertedValue = this.getinveredColor(wall[rowIndex][colIndex].color);
+    wall[rowIndex][colIndex].color = invertedValue;
+  }
+
+  getinveredColor(color: string) {
+    const rbgValues = color.slice(4, -1).split(',');
+    const invertedRgb = rbgValues.map((val: string) => 255 - Number(val));
+    return `rgb(${invertedRgb.join(',')})`;
   }
 }

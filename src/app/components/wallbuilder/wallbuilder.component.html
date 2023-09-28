@@ -1,19 +1,22 @@
 <div class="form">
-  <div class="form__field">
-    <label for="width" class="form__label">Width:</label>
-    <input type="number" [(ngModel)]="width" placeholder="Width" class="form__input" id="width" />
-  </div>
-  <div class="form__field">
-    <label for="height" class="form__label">Height:</label>
-    <input type="number" [(ngModel)]="height" placeholder="Height" class="form__input" id="height" />
-  </div>
-  <div class="form__field">
-    <label for="colors" class="form__label">Colors:</label>
-    <input type="number" [(ngModel)]="colorCount" placeholder="Color Count" class="form__input" id="colors" />
-  </div>
-  <div class="form__field form__field--checkbox">
-    <label for="diagonal" class="form__label">Diagonal mode</label>
-    <input type="checkbox" [(ngModel)]="isDiagonalModeOn" class="form__checkbox" id="diagonal" />
+  <div class="form__inputs">
+    <div class="form__field">
+      <label for="width" class="form__label">Width:</label>
+      <input type="number" [(ngModel)]="width" placeholder="Width" class="form__input" id="width" />
+    </div>
+    <div class="form__field">
+      <label for="height" class="form__label">Height:</label>
+      <input type="number" [(ngModel)]="height" placeholder="Height" class="form__input" id="height" />
+    </div>
+    <div class="form__field">
+      <label for="colors" class="form__label">Colors:</label>
+      <input type="number" [(ngModel)]="colorCount" placeholder="Color Count" class="form__input" id="colors" />
+    </div>
+    <div class="form__field form__field--checkbox">
+      <label for="diagonal" class="form__label">Diagonal mode</label>
+      <input type="checkbox" [(ngModel)]="isDiagonalModeOn" class="form__checkbox" id="diagonal" />
+    </div>
   </div>
   <button (click)="handleSubmit()" class="form__button">Generate</button>
+  <div *ngIf="errorMessage.length">{{ errorMessage }}</div>
 </div>

@@ -5,6 +5,11 @@
   margin-bottom: 8px;
 }
 
+.form__inputs {
+  display: flex;
+  flex-direction: row;
+}
+
 .form__label {
   display: inline-block;
   font-weight: bold;
@@ -45,6 +50,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  width: 100%;
+  /* flex-direction: column; */
+  /* width: 100%; */
 }
