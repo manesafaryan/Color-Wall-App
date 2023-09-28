@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { generateColors } from 'src/app/util/wall/wall.utils';
-
 import { WallFormData } from '../wallbuilder/wallbuilder.component';
 
 export type Brick = { color: string };
@@ -58,4 +56,15 @@ export class WallComponent {
     const invertedRgb = rbgValues.map((val: string) => 255 - Number(val));
     return `rgb(${invertedRgb.join(',')})`;
   }
+}
+
+function generateColors(numberOfColors: number): string[] {
+  const generatedColors: string[] = [];
+  for (let i = 0; i < numberOfColors; i++) {
+    const r = Math.random() * 255;
+    const g = Math.random() * 255;
+    const b = Math.random() * 255;
+    generatedColors.push(`rgb(${r}, ${g}, ${b})`);
+  }
+  return generatedColors;
 }
